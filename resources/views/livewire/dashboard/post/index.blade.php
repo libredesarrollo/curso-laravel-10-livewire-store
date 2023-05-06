@@ -15,6 +15,40 @@
 
     <a class="btn-secondary mb-3" href="{{ route('d-post-create') }}">Crear</a>
 
+    <div class="grid grid-cols-2 mb-2 gap-2">
+        <x-input class="w-full" type="text" wire:model="search" placeholder="Buscar por id, tìtulo o descripción"></x-input>
+    <div class="grid grid-cols-2 gap-2">
+        <x-input class="w-full" type="date" wire:model="from" placeholder="Desde"></x-input>
+        <x-input class="w-full" type="date" wire:model="to" placeholder="Hasta"></x-input>
+    </div>
+    
+    </div>
+
+    <div class="flex gap-2 mb-2">
+
+        <select class="block w-full" wire:model="posted">
+            <option value="">{{ __('Posted') }}</option>
+            <option value="not">No</option>
+            <option value="yes">Si</option>
+        </select>
+
+        <select class="block w-full" wire:model="type">
+            <option value="">{{ __('Type') }}</option>
+            <option value="adverd">adverd</option>
+            <option value="post">post</option>
+            <option value="course">course</option>
+            <option value="movie">movie</option>
+        </select>
+
+        <select class="block w-full" wire:model="category_id">
+            <option value="">{{ __('Category') }}</option>
+            @foreach ($categories as $i => $c)
+                <option value="{{ $i }}">{{ $c }}</option>
+            @endforeach
+        </select>
+
+    </div>
+
     <table class="table w-full border">
         <thead class="text-left bg-gray-100 ">
             <tr class="border-b">
@@ -45,14 +79,16 @@
             @foreach ($posts as $p)
                 <tr class="border-b">
                     <td class="p-2">
-                        {{ $p->title }}
+                        {{ str($p->title)->substr(0,15) }}
                     </td>
                     <td class="p-2">
                         {{ $p->date }}
                     </td>
                     <td class="p-2">
+                        <textarea class="w-48" >
                         {{ $p->description }}
-                    </td>
+                        </textarea>
+                    </td>                    
                     <td class="p-2">
                         {{ $p->posted }}
                     </td>
