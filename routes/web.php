@@ -63,3 +63,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'dashboa
 Route::group(['prefix' => 'contact'],function () {
     Route::get('/', App\Http\Livewire\Contact\General::class)->name("contact");
 });  
+
+Route::group(['prefix' => 'post'],function () {
+    Route::get('/', App\Http\Livewire\Dashboard\Post\Index::class)->name("d-post-index");        // listado
+    Route::get('/create', App\Http\Livewire\Dashboard\Post\Save::class)->name("d-post-create");  // crear
+    Route::get('/edit/{id}', App\Http\Livewire\Dashboard\Post\Save::class)->name("d-post-edit");// edit
+});
+

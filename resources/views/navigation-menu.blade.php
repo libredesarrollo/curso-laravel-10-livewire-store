@@ -39,16 +39,17 @@
             <x-slot name="content">
                 <div class="w-60">
 
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage CRUDs') }}
-                    </div>
+            <div class="block px-4 py-2 text-xs text-gray-400">
+                {{ __('Manage CRUDs') }}
+            </div>
 
-                    <x-dropdown-link href="{{ route('d-category-index') }}">
-                        {{ __('Category') }}
-                    </x-dropdown-link>
-                    <x-dropdown-link href="{{ route('d-post-index') }}">
-                        {{ __('Post') }}
-                    </x-dropdown-link>
+            <x-dropdown-link href="{{ route('d-category-index') }}">
+                {{ __('Category') }}
+            </x-dropdown-link>
+            
+            <x-dropdown-link href="{{ route('d-post-index') }}">
+                {{ __('Post') }}
+            </x-dropdown-link>
 
                 </div>
             </x-slot>
@@ -202,6 +203,11 @@
             <x-responsive-nav-link href="{{ route('d-category-index') }}" :active="request()->routeIs('d-category-index')">
                 {{ __('Category') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('d-post-index') }}" :active="request()->routeIs('d-category-index')">
+                {{ __('Post') }}
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
