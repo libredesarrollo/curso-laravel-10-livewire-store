@@ -52,24 +52,22 @@
     <table class="table w-full border">
         <thead class="text-left bg-gray-100 ">
             <tr class="border-b">
-                <th class="p-2">
-                    Título
-                </th>
-                <th class="p-2">
-                    Fecha
-                </th>
-                <th class="p-2">
-                    Descripción
-                </th>
-                <th class="p-2">
-                    Posted
-                </th>
-                <th class="p-2">
-                    Típo
-                </th>
-                <th class="p-2">
-                    Categoría
-                </th>
+                @foreach ($columns as $key => $c)
+                    <th>
+                        <button wire:click="sort('{{ $key }}')">
+                            {{ $c }}
+                            @if ($key == $sortColumn)
+                                @if ($sortDirection == 'asc')
+                                    &uarr;
+                                @else
+                                    &darr;
+                                @endif
+                            @endif
+                            
+                        </button>
+                    </th>
+                @endforeach
+
                 <th class="p-2">
                     Acciones
                 </th>

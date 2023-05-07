@@ -3,19 +3,18 @@
 
 namespace App\Http\Livewire\Dashboard\Post;
 
-
 use App\Models\Category;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use App\Http\Livewire\Dashboard\OrderTrait;
 
 class Index extends Component
 {
 
-
     use WithPagination;
-
+    use OrderTrait;
 
     public $confirmingDeletePost;
     public $postToDelete;
@@ -31,9 +30,21 @@ class Index extends Component
     // search
     public $search;
 
+      // order
+      public $columns=[
+        'id' => "Id",
+        'title' => "Título",
+        'date' => "Fecha",
+        'description' => "Descripción",
+        'posted' => "Posted",
+        'type' => "Típo",
+        'category_id' => "Categoría",
+    ];
+
+
     public function render()
     {
-        $posts = Post::where("id", ">=", 1);
+        $posts = Post::orderBy($this->sortColumn,$this->sortDirection);
 
         if ($this->search)
         $posts->where(function ($query) {
