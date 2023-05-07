@@ -18,6 +18,13 @@ class Index extends Component
     public $confirmingDeleteCategory;
     public $categoryToDelete;
 
+    public function getCategoryProperty()
+    {
+        if ($this->categoryToDelete)
+            return Category::find($this->categoryToDelete->id);
+        return "Sin categoría seleccionada";
+    }
+
     public $columns=[
         'id' => "Id",
         'title' => "Título",

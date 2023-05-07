@@ -12,6 +12,8 @@
             Listado
         @endslot
 
+        <p>Categoría seleccionada {{ $this->category }}</p>
+
         <a class="btn-secondary mb-3" href="{{ route('d-category-create') }}">Crear</a>
 
         <table class="table w-full border">
