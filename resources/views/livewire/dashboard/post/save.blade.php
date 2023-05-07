@@ -1,4 +1,3 @@
-
 @slot('header')
     {{ __('CRUD posts') }}
 @endslot
@@ -114,4 +113,25 @@
         @endslot
 
     </x-form-section>
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        document.addEventListener('livewire:load', function() {
+            //@this.text = "texto"
+            // *** comunicacion CKEDITOR a propiedad
+            var ckeditor = null
+            var editor = ClassicEditor.create(document.querySelector("#ckcontent")).then(
+                editor => {
+                    ckeditor = editor
+                    editor.model.document.on('change:data', () => {
+                        @this.text = editor.getData()
+                    });
+                }
+            )
+            // *** comunicacion propiedad a CKEDITOR
+            Livewire.hook('message.processed', (message, component) => {
+                if (message.updateQueue[0].name == "text")
+                    ckeditor.setData(@this.text)
+            })
+        })
+    </script>
 </div>
