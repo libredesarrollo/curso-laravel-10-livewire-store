@@ -10,7 +10,9 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'slug', 'date', 'image', 'text', 'description', 'posted', 'type', 'category_id'];
-
+    protected $casts =[
+        'date' => 'datetime'
+    ];
 
     public function category()
     {
