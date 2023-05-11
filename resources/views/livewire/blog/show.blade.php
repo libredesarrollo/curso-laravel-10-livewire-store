@@ -9,6 +9,8 @@
             <span class="ml-4 rounded-md bg-purple-500 py-1 px-2 text-white">{{ $post->type }}</span>
         </p>
 
+        @livewire('shop.cart',['post' => $post, "type" => "add"])
+
         <div>{!! $post->text !!}</div>
 
         <hr class="my-8">
