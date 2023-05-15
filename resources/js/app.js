@@ -1,8 +1,14 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import persist from '@alpinejs/persist'
+import Sortable from 'sortablejs';
+
 import focus from '@alpinejs/focus';
+
+Alpine.plugin(persist)
 window.Alpine = Alpine;
+window.Sortable = Sortable;
 
 Alpine.plugin(focus);
 
